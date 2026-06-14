@@ -12,6 +12,13 @@ class CharacterListView(generics.ListAPIView):
     pagination_class = CharactersListPagination
     queryset = Character.objects.all()
 
+    def get_queryset(self):
+        queryset = self.queryset
+        if "name" in self.request.query_params:
+            name = self.request.query_params.get("name")
+            queryset = queryset.filter(name__icontains=name)
+        return queryset
+
 
 class CharacterRandomView(generics.RetrieveAPIView):
     serializer_class = CharacterSerializer
