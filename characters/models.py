@@ -16,7 +16,7 @@ class Character(models.Model):
         UNKNOWN = "Unknown"
 
     api_id = models.IntegerField(unique=True)
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     status = models.CharField(max_length=7, choices=StatusChoices.choices)
     species = models.CharField(max_length=255)
     gender = models.CharField(max_length=10, choices=GenderChoices.choices)
